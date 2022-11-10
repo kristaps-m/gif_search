@@ -39,6 +39,7 @@ dependencies:
   flutter_share: ^2.0.0
   share: ^2.0.4
   transparent_image: ^2.0.0
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:

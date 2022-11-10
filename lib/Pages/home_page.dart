@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'dart:async';
 import 'gif_page.dart';
 import 'package:share/share.dart';
+import 'package:http/http.dart' as http;
 import 'package:transparent_image/transparent_image.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,9 +13,25 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>{
 
+  String _key = '36KaIF6yL3BUGXkFZiM3K62xgAaT0qCT';
   String _search = '';
   int _offset = 0;
   int _limit = 20;
+
+
+  Future<Map> GetGifs() async {
+    http.Response response;
+
+    if (_search == null) {
+      response = await http.get(
+          Uri.parse('https://api.giphy.com/v1/gifs/trending?api_key=$_key&$_limit&rating=G'));
+    } else {
+      response = await http.get(
+          Uri.parse('https://api.giphy.com/v1/gifs/search?api_key=$_key&q=$_search&$_limit&offset=$_offset&rating=G&lang=en')          );
+    }
+
+    return json.decode(response.body);
+  }
 
   Widget CreateGifTable(BuildContext context, AsyncSnapshot snapshot){
     return GridView.builder(
@@ -117,13 +136,11 @@ class _HomePageState extends State<HomePage>{
                         if(snapshot.hasError)
                           return Container();
                         else
-                          return Text(
-                            '$_search' // Put grid view!
-                          );
+                          return CreateGifTable(context, snapshot);
                     }
-                  }
+                  },
 
-              )
+              ),
 
           )
         ],

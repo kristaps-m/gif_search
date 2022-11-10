@@ -24,3 +24,8 @@ transfer files to new `home_page.dart` file
 
 body = Column
 Add place to search using `InputDecoration`
+
+package installed:
+`flutter pub add http`
+`flutter pud add transparent_image`
+`flutter pud add share`
