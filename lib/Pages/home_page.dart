@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>{
 
-  String _key = 'fNAw1xO1xJNEvaK0E7xXGJDj93vICGqQ';
+  String _key = '_place_your_giphy_API_Key_here';
   String _search = '';
   int _offset = 0;
   int _limit = 20;
