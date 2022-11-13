@@ -13,11 +13,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>{
 
-  String _key = '_place_your_giphy_API_Key_here';
+  String _key = '_add_your_api_key_here_';
   String _search = '';
   int _offset = 0;
   int _limit = 20;
-
 
   int GetCount(List data) {
     if (_search == null || _search.isEmpty) {
@@ -39,6 +38,62 @@ class _HomePageState extends State<HomePage>{
     }
 
     return json.decode(response.body);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.brown,
+        title: Text(
+            'Search Giphy gifs APP!',)//Image.network('https://picsum.photos/id/180/200/200'),
+      ),
+      backgroundColor: Colors.black,
+      body: Column(
+        children: <Widget>[
+          Padding(
+              padding: EdgeInsets.all(10.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.greenAccent, width: 3.0),
+                  ),
+                  labelText: 'Search here!',
+                  labelStyle: TextStyle(color: Colors.amber),
+                ),
+                style: TextStyle(color: Colors.white, fontSize: 20.0),
+                textAlign: TextAlign.center,
+                onSubmitted: (submittedText){
+                  setState(() {
+                    _search = submittedText;
+                  });
+                },
+              )
+          ),
+          Expanded(
+              child: FutureBuilder(
+                  future: GetGifs(),
+                  builder: (context, snapshot){
+                    switch(snapshot.connectionState){
+                      case ConnectionState.waiting:
+                      case ConnectionState.none:
+                        return Container(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 5.0,
+                          ),
+                        );
+                      default:
+                        if(snapshot.hasError)
+                          return Container();
+                        else
+                          return CreateGifTable(context, snapshot);
+                    }
+                  },
+              ),
+          )
+        ],
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
   }
 
   Widget CreateGifTable(BuildContext context, AsyncSnapshot snapshot){
@@ -94,65 +149,6 @@ class _HomePageState extends State<HomePage>{
           );
         }
       },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.brown,
-        title: Image.network(
-            'https://picsum.photos/id/180/200/200'),
-      ),
-      backgroundColor: Colors.black,
-      body: Column(
-        children: <Widget>[
-          Padding(
-              padding: EdgeInsets.all(10.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: 'Search here!',
-                  labelStyle: TextStyle(color: Colors.amber),
-                ),
-                style: TextStyle(color: Colors.white, fontSize: 20.0),
-                textAlign: TextAlign.center,
-                onSubmitted: (submittedText){
-                  setState(() {
-                    _search = submittedText;
-                  });
-                },
-              )
-          ),
-          Expanded(
-              child: FutureBuilder(
-                  future: GetGifs(),
-                  builder: (context, snapshot){
-                    switch(snapshot.connectionState){
-                      case ConnectionState.waiting:
-                      case ConnectionState.none:
-                        return Container(
-                          child: CircularProgressIndicator(
-                            strokeWidth: 5.0,
-                          ),
-                        );
-                      default:
-                        if(snapshot.hasError)
-                          return Container();
-                        else
-                          return CreateGifTable(context, snapshot);
-                    }
-                  },
-              ),
-          )
-        ],
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

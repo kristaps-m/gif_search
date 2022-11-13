@@ -1,27 +1,46 @@
 # gif_search
 
 An application I made using Flutter to search for GIF images using Giphy API.
+<img src="screen_shots/1.png" width="100" >
+<img src="screen_shots/2.png" width="100" >
+<img src="screen_shots/3.png" width="100" >
+<img src="screen_shots/4.png" width="100" >
+
+### Final result!
+
+<img src="screen_shots/5.png" width="250" >
+
+## [GET YOUR API KEY! developers.giphy.com](https://developers.giphy.com)
+
+:exclamation::exclamation::exclamation: go to /lib/Pages/home_page.dart <br/>
+:exclamation::exclamation::exclamation: add your api-key to '\_key' variable
 
 ### What is Flutter?
-Flutter us UI toolkit, to reach multi-platform applications from a single codebase, for all screen sizes and devices. 
+
+Flutter us UI toolkit, to reach multi-platform applications from a single codebase, for all screen sizes and devices.
+
 - [youtube.com/c/Londonappbrewery](https://www.youtube.com/watch?v=I9ceqw5Ny-4) (explained in simple video)
-- [wikipedia.org/Flutter](https://en.wikipedia.org/wiki/Flutter_(software))
+- [wikipedia.org/Flutter](<https://en.wikipedia.org/wiki/Flutter_(software)>)
 - [Widget catalog](https://docs.flutter.dev/development/ui/widgets)
 
 ### What is Giphy?
+
 Giphy, is an American online database and search engine that allows users to search for and share short looping videos with no sound.
+
 - [wikipedia.org/Giphy](https://en.wikipedia.org/wiki/Giphy)
 
 ###### What is API and how it works?
+
 - [giphy.com/api](https://developers.giphy.com/docs/api)
 - [How to Use the Giphy API](https://www.youtube.com/watch?v=HRh6zHRwRLo)
 - [The Giphy API and JavaScript, by 'The Coding Train'](https://www.youtube.com/watch?v=mj8_w11MvH8)
 
 Using api link we get acces to json file format, from it you can acces link and display it on your phone screen or in browser.
 
-Lets say you sent request using api query link, and got back json file format. In my app I am accessing link from data['data'][index]['images']['fixed_height']         ['url'] **_(where [index] = item in 'data' list)_**
+Lets say you sent request using api query link, and got back json file format. In my app I am accessing link from data['data'][index]['images']['fixed_height'] ['url'] **_(where [index] = item in 'data' list)_**
 
 We get direct image url, and aplication or browser helps us it display on our screens.
+
 ```
 {
    "data":[
