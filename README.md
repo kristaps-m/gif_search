@@ -1,10 +1,10 @@
 # gif_search
 
 An application I made using Flutter to search for GIF images using Giphy API.
-<img src="screen_shots/1.png" width="100" >
-<img src="screen_shots/2.png" width="100" >
-<img src="screen_shots/3.png" width="100" >
-<img src="screen_shots/4.png" width="100" >
+
+<img src="screen_shots/1.png" width="150" ><img src="screen_shots/2.png" width="150" >
+
+<img src="screen_shots/3.png" width="150" ><img src="screen_shots/4.png" width="150" >
 
 ### Final result!
 
@@ -29,7 +29,7 @@ Giphy, is an American online database and search engine that allows users to sea
 
 - [wikipedia.org/Giphy](https://en.wikipedia.org/wiki/Giphy)
 
-###### What is API and how it works?
+#### What is API and how it works?
 
 - [giphy.com/api](https://developers.giphy.com/docs/api)
 - [How to Use the Giphy API](https://www.youtube.com/watch?v=HRh6zHRwRLo)
@@ -70,9 +70,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
-
-TO-DO:
-change title image and it's link
 
 packages installed:<br/>
 `flutter pub add http`<br/>
