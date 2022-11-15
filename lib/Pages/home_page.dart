@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'gif_page.dart';
+import '/utils/delay.dart';
 import 'package:share/share.dart';
 import 'package:http/http.dart' as http;
 import 'package:transparent_image/transparent_image.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,10 +15,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>{
 
-  String _key = '_add_your_api_key_here_';
+  String _key = '_enter_your_api_key_here_';
   String _search = '';
   int _offset = 0;
   int _limit = 20;
+  // 1 second = 1000 milliseconds
+  int _liveSearchRequestMilliseconds  = 5000;
 
   int GetCount(List data) {
     if (_search == null || _search.isEmpty) {
@@ -28,8 +32,10 @@ class _HomePageState extends State<HomePage>{
 
   Future<Map> GetGifs() async {
     http.Response response;
-
+    // results will appear after _liveSearchRequestMilliseconds
+    await delay(_liveSearchRequestMilliseconds);
     if (_search == null) {
+
       response = await http.get(
           Uri.parse('https://api.giphy.com/v1/gifs/trending?api_key=$_key&$_limit&rating=G'));
     } else {
